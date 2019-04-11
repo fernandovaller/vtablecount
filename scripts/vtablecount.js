@@ -14,13 +14,13 @@
 	var isMouseDown = false,
 		isHighlighted;
 
-	function _moeda(valor) {				
+	function _moeda(valor) {
 		_valor = valor.split('.').join('');
 		_valor = _valor.replace(',', '.');
 		_valor = _valor.replace('R$', '');
 
 		//Remover tags html
-		_valor = _valor.replace(/(<([^>]+)>)/ig,"");					
+		_valor = _valor.replace(/(<([^>]+)>)/ig, "");
 		return parseFloat(_valor);
 	}
 
@@ -33,8 +33,8 @@
 				//remover todas as class
 				$(this).removeClass('_highlighted_');
 			});
-			$('#_selectcount').html('');
 		}
+		$('#_selectcount').html('');
 	}
 
 
@@ -53,10 +53,10 @@
 			//Calcula a soma
 			$.each(selected, function(index, val) {
 				var _val_ = $(this).html();
-				if(_val_){
+				if (_val_) {
 					_var = _moeda(_val_);
 					array.push(_var);
-					soma += _var;					
+					soma += _var;
 				}
 			});
 			soma_final = soma.toLocaleString('pt-BR');
@@ -83,17 +83,13 @@
 	}
 
 	$("table td").mousedown(function(evt) {
-
 			if (evt.shiftKey) {
 				isMouseDown = true;
-
 				$(this).toggleClass("_highlighted_");
 				isHighlighted = $(this).hasClass("_highlighted_");
 				soma();
-
+				return false; //evitar a seleção do texto
 			}
-			return false; // prevent text selection    
-
 		})
 		.mouseover(function(evt) {
 			if (evt.shiftKey) {
@@ -104,11 +100,14 @@
 			}
 
 		})
-		.bind("selectstart", function() {
-			return false;
-		})
+		.bind("selectstart", function(evt) {
+			if (evt.shiftKey) {
+				return false; //evitar a seleção do texto
+			}
+		});
 
 	$(document).mouseup(function(evt) {
+
 		if (evt.shiftKey) {
 			isMouseDown = false;
 		} else {
