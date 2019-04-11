@@ -9,7 +9,7 @@
 (function($) {
 
 	$('body').append('<div id="_selectcount"></div>');
-	$('head').append('<style>div#_selectcount {position: fixed; top:0;z-index: 99999;}div#_selectcount #selectcount_sum {color: #FFF; font-family: Arial, sans-serif; font-size: 14px; white-space: nowrap; z-index: 99999; background-color: rgba(2, 140, 185, 0.97); overflow: hidden; /* padding: 10px; */ transition: opacity 0.2s ease 0s;}div#_selectcount #selectcount_sum b { color: rgb(209, 230, 255); display: inline-block; font-weight: 200; margin: 0px 1px; padding: 12px 12px 12px 0px;}div#_selectcount #selectcount_sum b i {font-style: normal; padding-left: 6px; font-weight: 700; color: white;}td._highlighted_  { background: #b5d5ff !important; }</style>');
+	$('head').append('<style>div#_selectcount {position: fixed; top:0;z-index: 99999;}div#_selectcount #selectcount_sum {color: #FFF; font-family: Arial, sans-serif; font-size: 14px; white-space: nowrap; z-index: 99999; background-color: rgba(2, 140, 185, 0.97); overflow: hidden; /* padding: 10px; */ transition: opacity 0.2s ease 0s;}div#_selectcount #selectcount_sum b { color: rgb(209, 230, 255); display: inline-block; font-weight: 200; margin: 0px 1px; padding: 12px 12px 12px 0px;}div#_selectcount #selectcount_sum b i {font-style: normal; padding-left: 6px; font-weight: 700; color: white;}td._highlighted_  { background: #b5d5ff !important;}</style>');
 
 	var isMouseDown = false,
 		isHighlighted;
@@ -26,12 +26,12 @@
 
 	//Limpa os dados
 	function clear() {
-		var selected = $('._highlighted_');
+		var selected = $('._highlighted_');				
 
 		if (typeof selected !== 'undefined' && selected.length > 0) {
 			$.each(selected, function(index, val) {
 				//remover todas as class
-				$(this).removeClass('_highlighted_');
+				$(this).removeClass('_highlighted_');				
 			});
 		}
 		$('#_selectcount').html('');
@@ -82,19 +82,22 @@
 		}
 	}
 
+
 	$("table td").mousedown(function(evt) {
 			if (evt.shiftKey) {
 				isMouseDown = true;
+				
 				$(this).toggleClass("_highlighted_");
-				isHighlighted = $(this).hasClass("_highlighted_");
+				isHighlighted = $(this).hasClass("_highlighted_");				
 				soma();
+
 				return false; //evitar a seleção do texto
 			}
 		})
 		.mouseover(function(evt) {
 			if (evt.shiftKey) {
 				if (isMouseDown) {
-					$(this).toggleClass("_highlighted_", isHighlighted);
+					$(this).toggleClass("_highlighted_", isHighlighted);					
 					soma();
 				}
 			}
