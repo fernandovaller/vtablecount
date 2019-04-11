@@ -12,6 +12,9 @@ Install (Firefox)
 
 Changelog
 -------
+`11/04/2019`
+* Fix block select text
+
 `10/04/2019`
 * Fix soma de valores em milhoes
 * Fix soma de valores com R$
